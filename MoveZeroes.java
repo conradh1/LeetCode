@@ -38,7 +38,7 @@ public class Solution  {
     MoveZeroes.Solution mySolution = myMoveZeroes.new Solution();
     Scanner scan = new Scanner(System.in);
     
-    String input = scan.nextLine();  // Get the number of tests.
+    String input = scan.nextLine();  
     String[] arrs = input.split(" ");
     int[] nums = new int[arrs.length];
     for(int i = 0; i < arrs.length; i++) {

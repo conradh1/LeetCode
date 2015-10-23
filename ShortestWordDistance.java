@@ -31,7 +31,7 @@ public class Solution  {
           if ( shortest > n ) shortest = n;
         }
       }      
-      return Math.abs( shortest );  
+      return shortest;  
      }
 }
 
