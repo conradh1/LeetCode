@@ -1,5 +1,8 @@
 import java.util.*;
 
+/*
+See problem: https://leetcode.com/problems/repeated-dna-sequences/
+*/
 public class DNASequences
 {
    public static List<String> findRepeatedDnaSequences(String dna) {
