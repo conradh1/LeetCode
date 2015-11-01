@@ -1,35 +1,29 @@
 import java.util.*;
 
 /*
-See problem: https://leetcode.com/problems/repeated-dna-sequences/
+See problem: https://leetcode.com/problems/find-the-duplicate-number/
 */
 class DuplicateNumber
 {
-  public static int duplicateNumber(int[] nums) {
-    int dup = 0;
-    int iSum = 0;
-    int aSum = 0;
-    int size = nums.length;
-    if ( size == 0)
+
+   public static int findDuplicate(int[] nums) {
+
+      int[] sort = new int[nums.length+1];
+      sort[0] = 0;
+      for (int i = 0; i < nums.length; i++) {
+	if ( sort[nums[i]+1] == 0 ) {
+	  sort[nums[i]+1] = nums[i];
+	}
+	else if ( sort[nums[i]+1] == nums[i]) {
+	  return nums[i];
+	}
+      }
+      //System.out.println("debug"+Arrays.toString(sort));
       return -1;
-    if ( size == 1)
-      return nums[0];
-    
-    for (int i = 0; i < size; i++) {        
-        iSum += i+1;
-        aSum += nums[i];
-    }        
-    dup = aSum^iSum;
-    System.out.println("i "+iSum+" num: "+aSum);
-    return dup;
+   }
+
+public final static void main(String S[]) {
+    int[] input = {2,1,4,3,4,5};
+    System.out.println(findDuplicate(input));
   }
-   
-  public final static void main(String S[]) {
-    int[] input = {1,2,3,4,11};
-    
-    System.out.println(duplicateNumber(input));
-    
-    //permute(input);
-  }
-    
 }
