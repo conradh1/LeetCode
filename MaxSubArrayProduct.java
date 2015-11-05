@@ -14,13 +14,13 @@ public class MaxSubArrayProduct {
 
   public static void main(String[] args) {
     // build the simple tree from chapter 11.
-    int[] ar = {2,1,3,4,0,2,1,-5,-6};
+    int[] ar = {2,4,-3,5,1};
     System.out.println(maxProduct(ar));
   }
 
 
   public static int maxProduct(int[] nums) {
-    int current_product = 1;
+    int current = 1;
     int max = Integer.MIN_VALUE;
     int size = nums.length;
 
@@ -29,16 +29,24 @@ public class MaxSubArrayProduct {
     if ( nums.length == 1 )
       return nums[0];
 
-
     for (int i = 0; i < size; i++) {
-      for ( int j = 1; j < size; j++) {
-	current_product = 1;
-	for ( int k = i; k <= (i+j) && k < size; k++) {
-	  current_product *= nums[k];
-	}
-	if ( current_product > max )
-	  max = current_product;
-      }
+      if ( current == 0 ) {
+	current = 1;
+       }
+      current *= nums[i];
+      if (current > max )
+        max = current;
+    }
+
+    current = 1;
+
+    for (int i = size-1; i >= 0; i--) {
+      if ( current == 0 ) {
+	current = 1;
+       }
+      current *= nums[i];
+      if (current > max )
+        max = current;
     }
      return max;
   }

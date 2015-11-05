@@ -6,7 +6,7 @@ See problem: https://leetcode.com/problems/repeated-dna-sequences/
 public class DNASequences
 {
    public static List<String> findRepeatedDnaSequences(String dna) {
-        Set<String> seqSet = new HashSet<String>();
+        List<String> seqSet = new ArrayList<String>();
         List<String> foundList = new ArrayList<String>();
         // Need string greater than 10 in length for sequence.
         

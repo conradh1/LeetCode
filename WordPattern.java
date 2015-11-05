@@ -24,9 +24,9 @@ public class Solution  {
         String[] words = str.split(" ");
         char[] letters = pattern.toCharArray();
         LinkedHashMap<Character, String> wordList = new LinkedHashMap<Character, String>();
-        
+
         if ( words.length != letters.length ) return false;
-        
+
         for ( int i  = 0; i < letters.length; i++ ) {
           // if we've seen this before, it should match
           if ( wordList.containsKey( letters[i] )) {
