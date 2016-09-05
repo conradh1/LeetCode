@@ -24,12 +24,12 @@ public class Solution  {
           // check current node
           if ( target == node ) return true; //found
           // check right
-          if ( target > matrix[i+1][j] ) {              
+          if ( target > matrix[i+1][j] ) {
             // check down
              if  ( target == matrix[i][j+1] )
               return true;
              //else if ( target > matrix[i][j+1] )
-              //return false;                        
+              //return false;
              else
               j++;
           }
@@ -57,7 +57,7 @@ public class Solution  {
     boolean solution;
     for(int i = 0; i < arrs.length; i++) {
       int target = Integer.parseInt(arrs[i]);
-      solution = mySolution.searchMatrix( matrix2, target );
+      solution = mySolution.searchMatrix( matrix, target );
       System.out.println( solution );
     }    
  } //main
