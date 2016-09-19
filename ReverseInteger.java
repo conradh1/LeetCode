@@ -19,44 +19,37 @@ public class ReverseInteger {
 
   public static void main(String[] args) {
     // build the simple tree from chapter 11.
-    int x = -123;
+    int x = -2147483648;
     System.out.println(""+reverse(x));
   }
 
 
-  public static long reverse(int x) {
+  public static int reverse(int x) {
 
-    // case negative
-    int start = 0;
-    if ( x < 0 ) {
-      start = 1;
-    }
+    int neg = 1;
+    if ( x < 0) neg = -1;
 
-    /*
-    String str = ""+x;
-    String rev = new StringBuffer(str).reverse().toString();
-
-    int reverse = Integer.parseInt(rev);
-
-    return reverse;
-    */
-
-    char[] chars = (x+"").toCharArray();  // integer to char array
+    Long reverse = new Long(x);
+     reverse = Math.abs(reverse);
+    char[] chars = (reverse+"").toCharArray();  // integer to char array
     String rev = "";
 
     // case single character
     if ( chars.length == 1 )
       return x;
 
-    for ( int i = chars.length-1; i >= start; i--) {
+    for ( int i = chars.length-1; i >= 0; i--) {
        rev += ""+chars[i];
 
     }
-    if ( start > 0 ) rev = chars[0]+rev;  // add negative sign
 
-    long reverse = Long.parseLong(rev);
+    reverse = Long.parseLong(rev)*neg;
+
+
+    if ( reverse >= Integer.MAX_VALUE || reverse <= Integer.MIN_VALUE )
+      return 0;
     //int reverse = 0;
-    return reverse;
+    return Integer.parseInt(rev)*neg;
 
   }
 

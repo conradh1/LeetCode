@@ -12,17 +12,17 @@ public class MaxSubArray {
     int best_start_index = -1;
     int best_end_index = -1;
     int best_sum = Integer.MIN_VALUE;
-    
-    int current_index = 0;    
+
+    int current_index = 0;
     int current_sum = 0;
-    
+
     if ( size == 1 ) {
       return nums[0];
     }    
-        
-    for ( int i = 1; i < size; i++) {      
+
+    for ( int i = 1; i < size; i++) {
       int val = current_sum + nums[i];
-      
+
        if ( val > best_sum  ) {
           if ( current_sum == 0)
             current_index = i;

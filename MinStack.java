@@ -28,7 +28,6 @@ public class MinStack {
 
     /** initialize your data structure here. */
     private Node head;
-    private int value;
 
     public class Node {
       private int value;
@@ -55,19 +54,18 @@ public class MinStack {
       return temp.value;
     }
 
-    public int printStack() {
+    public void printStack() {
       Node tmp = head;
-      while ( tmp.next != null ) {
+      while ( tmp != null ) {
         System.out.print(tmp.value+" ");
         tmp = tmp.next;
       }
       System.out.println();
-      return min;
     }
     public int getMin() {
       Node tmp = head;
       int min = tmp.value;
-      while ( tmp.next != null ) {
+      while ( tmp != null ) {
         if ( tmp.value < min )
           min = tmp.value;
         tmp = tmp.next;
