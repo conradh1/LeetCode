@@ -28,7 +28,6 @@ public class ValidParentheses {
 
   public static boolean isValid(String s) {
     char[] pars = s.toCharArray();
-    Queue<Character> queue = new LinkedList<Character>();
     Stack<Character> stack = new Stack<Character>();
     char last;
 
