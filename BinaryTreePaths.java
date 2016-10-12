@@ -30,41 +30,28 @@ public class BinaryTreePaths {
   }
 
 
-  public static void preOrder( TreeNode node ) {
-    if ( node  != null ) {
-      System.out.print( node.val+" " );
-      preOrder( node.left);
-      preOrder( node.right);
-    }
-  }
-
-
   public static List<String> binaryTreePaths(TreeNode root) {
 
     Stack<TreeNode> s = new Stack<TreeNode>();
-    Queue<String> q = new ArrayDeque<String>();
     List<String> list = new ArrayList<String>();
-    String str = "";
+    Map<TreeNode, String> nodeMap = new HashMap<TreeNode, String>();
 
+    if ( root == null ) return list;
     s.push(root);
-
+    nodeMap.put(root, ""+root.val);
 
     while ( !s.isEmpty() ) {
-      TreeNode tmp = s.pop();
-      if ( tmp.left != null ) {
-	s.push( tmp.left);
-	q.offer( tmp.left.val+"->");
+      TreeNode node = s.pop();
+      if ( node.left == null && node.right == null ) {
+         list.add(nodeMap.get(node));
       }
-      if ( tmp.right != null ) {
-	s.push( tmp.right);
-	q.offer( tmp.right.val+"->");
+      if ( node.right != null ) {
+	s.push( node.right);
+	nodeMap.put( node.right, nodeMap.get(node)+"->"+node.right.val);
       }
-      if ( tmp.left == null && tmp.right == null ) {
-         str = root.val+"->";
-	 while (!q.isEmpty()) {
-            str += q.poll();
-        }
-        list.add(str);
+      if ( node.left != null ) {
+	s.push( node.left);
+	nodeMap.put( node.left, nodeMap.get(node)+"->"+node.left.val);
       }
     }
     return list;
@@ -83,16 +70,13 @@ public class BinaryTreePaths {
         root.right = n3;
         root.left.right = (n5);
 
-
-        System.out.print("PreOrder: ");
-        //preOrder(root);
 	List<String> list = binaryTreePaths(root);
 	 Iterator iter = list.iterator();
 	while (iter.hasNext()) {      // any more element
          String str = (String)iter.next();
-         System.out.println(str);
-      }
-
+         System.out.print(str+" ");
+	}
+	System.out.println();
   }
 
 

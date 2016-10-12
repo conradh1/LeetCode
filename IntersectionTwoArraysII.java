@@ -28,34 +28,48 @@ public class IntersectionTwoArraysII {
 
   public static int[] intersect(int[] nums1, int[] nums2) {
   
-    int start = -1, pos = 0; 
-    int max = -1;
-      
-    for ( int i = 0; i < nums1.length; i++ ) {
-        for ( int j = 0; j < nums2.length; j++ ) {
+    int start = -1, pos = 0, i = 0, j = 0;
+
+
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    while ( i < nums1.length && j < nums2.length) {
+	    while ( nums1[i] != nums2[j] ) {
+	      if ( nums1[i] < nums2[j])
+		i++;
+	      else if ( nums1[i] > nums2[j])
+		j++;
+	      if ( i == nums1.length ) {
+		i--;
+		break;
+	      }
+	      if ( j == nums2.length ) {
+		j--;
+		break;
+	      }
+	    }
             if ( nums1[i] == nums2[j] ) {
-                pos = j;
-                while ( i < nums1.length && j < nums2.length && nums1[i] == nums2[j] ){
-                    i++;
-                    j++;
-                }
-                if ( (j-pos) > max ) {
-                    start = pos;
-                    max = j-pos;                
-                }
-                
+                if ( start == -1 )
+		  start = i;
+                i++;
+                j++;
+                pos++;
             }
-            
-        }
+            else if ( nums1[i] < nums2[j])
+	      i++;
+	    else if ( nums1[i] > nums2[j])
+	      j++;
     }
+
+
+    if ( start == -1 ) return new int[0];
+    int[] sub = new int[pos];
     
-    if ( max == -1 ) return new int[0];
-    int[] sub = new int[max];
-    
-    System.out.println ("pos: "+start+ " max: "+max);
-    int j = 0;
-    for ( int i = start; i < max; i++)  {
-        sub[j] = nums2[i];
+
+    j = 0;
+    for ( i = start; i < pos+start; i++)  {
+        sub[j] = nums1[i];
         j++;
     }
     return sub;
